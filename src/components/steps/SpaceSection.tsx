@@ -70,15 +70,6 @@ export function SpaceSection({ space, store }: Props) {
           ))}
         </div>
       )}
-
-      <button
-        type="button"
-        onClick={() => addProject(space.id, "")}
-        className="inline-flex min-h-11 items-center gap-2 text-sm font-medium text-primary"
-      >
-        <Plus className="size-4" aria-hidden="true" />
-        Add another project
-      </button>
     </section>
   );
 }

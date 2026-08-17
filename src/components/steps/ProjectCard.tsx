@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChevronDown, Trash2 } from "lucide-react";
 import { Field, inputClass } from "@/components/enquiry/Field";
 import { OptionChips } from "@/components/enquiry/OptionChips";
@@ -26,8 +26,15 @@ export function ProjectCard({
   onRemove,
 }: Props) {
   const [open, setOpen] = useState(defaultOpen || isCustom);
+  const customInputRef = useRef<HTMLInputElement>(null);
   const panelId = `project-panel-${project.id}`;
   const title = project.project_type || "Untitled project";
+
+  useEffect(() => {
+    if (isCustom && !project.project_type.trim()) {
+      customInputRef.current?.focus();
+    }
+  }, [isCustom, project.project_type]);
 
   const textFields: Array<{ key: keyof Project; label: string; placeholder: string }> = [
     { key: "dimensions", label: "Approximate dimensions", placeholder: "e.g. About 4m x 3m, or “I don't know yet”" },
@@ -65,9 +72,15 @@ export function ProjectCard({
               {(props) => (
                 <input
                   {...props}
+                  ref={customInputRef}
                   type="text"
                   value={project.project_type}
                   onChange={(e) => onChange({ project_type: e.target.value })}
+                  onBlur={() => {
+                    if (!project.project_type.trim()) {
+                      onRemove();
+                    }
+                  }}
                   className={inputClass()}
                   placeholder="e.g. Built-in Coffee Station"
                 />
