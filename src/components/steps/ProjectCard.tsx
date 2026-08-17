@@ -21,7 +21,7 @@ export function ProjectCard({
   project,
   spaceName,
   isCustom,
-  defaultOpen = false,
+  defaultOpen = true,
   onChange,
   onRemove,
 }: Props) {
