@@ -68,6 +68,11 @@ export function ProjectCard({
                   type="text"
                   value={project.project_type}
                   onChange={(e) => onChange({ project_type: e.target.value })}
+                  onBlur={() => {
+                    if (!project.project_type.trim()) {
+                      onRemove();
+                    }
+                  }}
                   className={inputClass()}
                   placeholder="e.g. Built-in Coffee Station"
                 />
