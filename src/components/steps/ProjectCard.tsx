@@ -26,8 +26,15 @@ export function ProjectCard({
   onRemove,
 }: Props) {
   const [open, setOpen] = useState(defaultOpen || isCustom);
+  const customInputRef = useRef<HTMLInputElement>(null);
   const panelId = `project-panel-${project.id}`;
   const title = project.project_type || "Untitled project";
+
+  useEffect(() => {
+    if (isCustom && !project.project_type.trim()) {
+      customInputRef.current?.focus();
+    }
+  }, [isCustom, project.project_type]);
 
   const textFields: Array<{ key: keyof Project; label: string; placeholder: string }> = [
     { key: "dimensions", label: "Approximate dimensions", placeholder: "e.g. About 4m x 3m, or “I don't know yet”" },
