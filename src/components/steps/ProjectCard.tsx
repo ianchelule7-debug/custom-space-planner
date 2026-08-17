@@ -72,6 +72,7 @@ export function ProjectCard({
               {(props) => (
                 <input
                   {...props}
+                  ref={customInputRef}
                   type="text"
                   value={project.project_type}
                   onChange={(e) => onChange({ project_type: e.target.value })}
