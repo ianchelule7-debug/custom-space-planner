@@ -1,5 +1,5 @@
 import { Check, Plus, Trash2 } from "lucide-react";
-import { OTHER, SPACES } from "@/lib/constants";
+import { SPACES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { projectHasData, type EnquiryStore } from "@/lib/useEnquiry";
 import { Field, inputClass } from "@/components/enquiry/Field";
@@ -118,8 +118,6 @@ export function SpaceSelector({ store, error }: Props) {
           {error}
         </p>
       )}
-
-      <p className="sr-only">{OTHER}</p>
     </section>
   );
 }
