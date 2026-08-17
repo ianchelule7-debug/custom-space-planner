@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChevronDown, Trash2 } from "lucide-react";
 import { Field, inputClass } from "@/components/enquiry/Field";
 import { OptionChips } from "@/components/enquiry/OptionChips";
