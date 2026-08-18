@@ -6,7 +6,7 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
-const deployTarget = process.env.NETLIFY ? "netlify" : undefined;
+const deployTarget = process.env["NETLIFY"] ? "netlify" : undefined;
 
 export default defineConfig({
   tanstackStart: {
