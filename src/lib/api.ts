@@ -44,12 +44,7 @@ interface FileMeta {
 }
 
 export async function submitEnquiry(enquiry: Enquiry): Promise<void> {
-  const webhookUrl = import.meta.env['VITE_N8N_WEBHOOK_URL'] as string | undefined;
-  if (!webhookUrl) {
-    throw new ConfigurationError(
-      "The submission endpoint has not been configured. Set VITE_N8N_WEBHOOK_URL to enable enquiry submissions.",
-    );
-  }
+  const webhookUrl = (import.meta.env['VITE_N8N_WEBHOOK_URL'] as string | undefined) || "https://alucore.app.n8n.cloud/webhook/softwoods-enquiry";
 
   const payload = buildPayload(enquiry);
   const attachments: Array<{ meta: FileMeta; file: UploadedFile }> = [];
